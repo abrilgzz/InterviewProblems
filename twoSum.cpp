@@ -2,7 +2,7 @@
 Abril Gonzalez
 January 2019
 
-387. First Unique Character
+LeetCode Problem 387. First Unique Character
 Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.
 
 Runtime: O(n)
