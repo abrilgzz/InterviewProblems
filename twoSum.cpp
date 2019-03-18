@@ -1,38 +1,38 @@
 /*
-Abril Gonzalez
-January 2019
-
-LeetCode Problem 387. First Unique Character
-Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.
-
-Runtime: O(n)
-
+    Abril Marina Gonzalez Ramirez
+    March 2019
+    
+    LeetCode Problem 1. Two Sum
+    Given an array of integers, return indices of the 
+    two numbers such that they add up to a specific target.
+   
+    You may assume that each input would have exactly one solution, 
+    and you may not use the same element twice.
+    
+    Runtime: O(n)
 */
 class Solution {
 public:
-    int firstUniqChar(string s) {
-        // Create character map that stores how many times a character has been detected
-        map<char,int> mapCharCounter;
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int,int> complements;
+        vector<int> answer;
         
-        for(int i=0; i< s.length(); i++){
-            // If the character has not been seen before, add it to the map
-            if(mapCharCounter.find(s[i]) == mapCharCounter.end()){
-                mapCharCounter[s[i]] = 1;
+        for(int i=0; i < nums.size(); i++){
+            // Check if you have found the complement previously
+            auto it = complements.find(nums[i]);
+            if(it == complements.end()){
+                // Push the complement (target-number) of each number 
+                // into a map and store its index
+                complements[target-nums[i]] = i; 
             }
-            // Increase the number of times the character has been detected
             else{
-                mapCharCounter[s[i]]++;
-            }
+                answer.push_back(it->second);
+                answer.push_back(i);
+                return answer;
+            }   
         }
         
-        // Iterate through string to see if the character at the current index is
-        // the first unique character, according to the previously created map
-        for(int i=0; i < s.length(); i++){
-            if(mapCharCounter.at(s[i]) == 1)
-                return i;
-        }
+        return answer;
         
-        // Return -1 if there is no unique character
-        return -1;
     }
 };
